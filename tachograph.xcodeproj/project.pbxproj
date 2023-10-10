@@ -1,0 +1,626 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1892782E2ACAEEA00011F9A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892782C2ACAEEA00011F9A4 /* Reachability.m */; };
+		18D213422A2303AC003EF2C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213412A2303AC003EF2C5 /* AppDelegate.m */; };
+		18D213452A2303AC003EF2C5 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213442A2303AC003EF2C5 /* SceneDelegate.m */; };
+		18D213482A2303AC003EF2C5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213472A2303AC003EF2C5 /* FirstViewController.m */; };
+		18D2134B2A2303AC003EF2C5 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2134A2A2303AC003EF2C5 /* SecondViewController.m */; };
+		18D2134E2A2303AC003EF2C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D2134C2A2303AC003EF2C5 /* Main.storyboard */; };
+		18D213502A2303AF003EF2C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D2134F2A2303AF003EF2C5 /* Assets.xcassets */; };
+		18D213532A2303AF003EF2C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D213512A2303AF003EF2C5 /* LaunchScreen.storyboard */; };
+		18D213562A2303AF003EF2C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213552A2303AF003EF2C5 /* main.m */; };
+		18D213602A2303AF003EF2C5 /* tachographTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2135F2A2303AF003EF2C5 /* tachographTests.m */; };
+		18D2136B2A2303AF003EF2C5 /* tachographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2136A2A2303AF003EF2C5 /* tachographUITests.m */; };
+		18DE3E6E2A6EB7440014D026 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DE3E6D2A6EB7440014D026 /* SystemConfiguration.framework */; };
+		18DE3E732A7568E40014D026 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DE3E722A7568E30014D026 /* CoreFoundation.framework */; };
+		18E20C272A260AF600FDF1A8 /* TextTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E20C262A260AF600FDF1A8 /* TextTabBar.m */; };
+		18EC48542A279B2A00C36B6E /* TextTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC48532A279B2A00C36B6E /* TextTabBarController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18D2135C2A2303AF003EF2C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18D213352A2303AC003EF2C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18D2133C2A2303AC003EF2C5;
+			remoteInfo = tachograph;
+		};
+		18D213672A2303AF003EF2C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18D213352A2303AC003EF2C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18D2133C2A2303AC003EF2C5;
+			remoteInfo = tachograph;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1892782C2ACAEEA00011F9A4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		1892782D2ACAEEA00011F9A4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		18D2133D2A2303AC003EF2C5 /* tachograph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tachograph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D213402A2303AC003EF2C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		18D213412A2303AC003EF2C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		18D213432A2303AC003EF2C5 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		18D213442A2303AC003EF2C5 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		18D213462A2303AC003EF2C5 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		18D213472A2303AC003EF2C5 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		18D213492A2303AC003EF2C5 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		18D2134A2A2303AC003EF2C5 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		18D2134D2A2303AC003EF2C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18D2134F2A2303AF003EF2C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18D213522A2303AF003EF2C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18D213542A2303AF003EF2C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D213552A2303AF003EF2C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18D2135B2A2303AF003EF2C5 /* tachographTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tachographTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D2135F2A2303AF003EF2C5 /* tachographTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tachographTests.m; sourceTree = "<group>"; };
+		18D213612A2303AF003EF2C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D213662A2303AF003EF2C5 /* tachographUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tachographUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D2136A2A2303AF003EF2C5 /* tachographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tachographUITests.m; sourceTree = "<group>"; };
+		18D2136C2A2303AF003EF2C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18DE3E6D2A6EB7440014D026 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		18DE3E722A7568E30014D026 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		18E20C252A260AF600FDF1A8 /* TextTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextTabBar.h; sourceTree = "<group>"; };
+		18E20C262A260AF600FDF1A8 /* TextTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextTabBar.m; sourceTree = "<group>"; };
+		18EC48522A279B2A00C36B6E /* TextTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextTabBarController.h; sourceTree = "<group>"; };
+		18EC48532A279B2A00C36B6E /* TextTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextTabBarController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18D2133A2A2303AC003EF2C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18DE3E732A7568E40014D026 /* CoreFoundation.framework in Frameworks */,
+				18DE3E6E2A6EB7440014D026 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D213582A2303AF003EF2C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D213632A2303AF003EF2C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18D213342A2303AC003EF2C5 = {
+			isa = PBXGroup;
+			children = (
+				18D2133F2A2303AC003EF2C5 /* tachograph */,
+				18D2135E2A2303AF003EF2C5 /* tachographTests */,
+				18D213692A2303AF003EF2C5 /* tachographUITests */,
+				18D2133E2A2303AC003EF2C5 /* Products */,
+				18DE3E6C2A6EB7430014D026 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		18D2133E2A2303AC003EF2C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18D2133D2A2303AC003EF2C5 /* tachograph.app */,
+				18D2135B2A2303AF003EF2C5 /* tachographTests.xctest */,
+				18D213662A2303AF003EF2C5 /* tachographUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18D2133F2A2303AC003EF2C5 /* tachograph */ = {
+			isa = PBXGroup;
+			children = (
+				18D213402A2303AC003EF2C5 /* AppDelegate.h */,
+				18D213412A2303AC003EF2C5 /* AppDelegate.m */,
+				18D213432A2303AC003EF2C5 /* SceneDelegate.h */,
+				18D213442A2303AC003EF2C5 /* SceneDelegate.m */,
+				1892782D2ACAEEA00011F9A4 /* Reachability.h */,
+				1892782C2ACAEEA00011F9A4 /* Reachability.m */,
+				18EC48522A279B2A00C36B6E /* TextTabBarController.h */,
+				18EC48532A279B2A00C36B6E /* TextTabBarController.m */,
+				18E20C252A260AF600FDF1A8 /* TextTabBar.h */,
+				18E20C262A260AF600FDF1A8 /* TextTabBar.m */,
+				18D213462A2303AC003EF2C5 /* FirstViewController.h */,
+				18D213472A2303AC003EF2C5 /* FirstViewController.m */,
+				18D213492A2303AC003EF2C5 /* SecondViewController.h */,
+				18D2134A2A2303AC003EF2C5 /* SecondViewController.m */,
+				18D2134C2A2303AC003EF2C5 /* Main.storyboard */,
+				18D2134F2A2303AF003EF2C5 /* Assets.xcassets */,
+				18D213512A2303AF003EF2C5 /* LaunchScreen.storyboard */,
+				18D213542A2303AF003EF2C5 /* Info.plist */,
+				18D213552A2303AF003EF2C5 /* main.m */,
+			);
+			path = tachograph;
+			sourceTree = "<group>";
+		};
+		18D2135E2A2303AF003EF2C5 /* tachographTests */ = {
+			isa = PBXGroup;
+			children = (
+				18D2135F2A2303AF003EF2C5 /* tachographTests.m */,
+				18D213612A2303AF003EF2C5 /* Info.plist */,
+			);
+			path = tachographTests;
+			sourceTree = "<group>";
+		};
+		18D213692A2303AF003EF2C5 /* tachographUITests */ = {
+			isa = PBXGroup;
+			children = (
+				18D2136A2A2303AF003EF2C5 /* tachographUITests.m */,
+				18D2136C2A2303AF003EF2C5 /* Info.plist */,
+			);
+			path = tachographUITests;
+			sourceTree = "<group>";
+		};
+		18DE3E6C2A6EB7430014D026 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18DE3E722A7568E30014D026 /* CoreFoundation.framework */,
+				18DE3E6D2A6EB7440014D026 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18D2133C2A2303AC003EF2C5 /* tachograph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D2136F2A2303AF003EF2C5 /* Build configuration list for PBXNativeTarget "tachograph" */;
+			buildPhases = (
+				18D213392A2303AC003EF2C5 /* Sources */,
+				18D2133A2A2303AC003EF2C5 /* Frameworks */,
+				18D2133B2A2303AC003EF2C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tachograph;
+			productName = tachograph;
+			productReference = 18D2133D2A2303AC003EF2C5 /* tachograph.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18D2135A2A2303AF003EF2C5 /* tachographTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D213722A2303AF003EF2C5 /* Build configuration list for PBXNativeTarget "tachographTests" */;
+			buildPhases = (
+				18D213572A2303AF003EF2C5 /* Sources */,
+				18D213582A2303AF003EF2C5 /* Frameworks */,
+				18D213592A2303AF003EF2C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18D2135D2A2303AF003EF2C5 /* PBXTargetDependency */,
+			);
+			name = tachographTests;
+			productName = tachographTests;
+			productReference = 18D2135B2A2303AF003EF2C5 /* tachographTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		18D213652A2303AF003EF2C5 /* tachographUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D213752A2303AF003EF2C5 /* Build configuration list for PBXNativeTarget "tachographUITests" */;
+			buildPhases = (
+				18D213622A2303AF003EF2C5 /* Sources */,
+				18D213632A2303AF003EF2C5 /* Frameworks */,
+				18D213642A2303AF003EF2C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18D213682A2303AF003EF2C5 /* PBXTargetDependency */,
+			);
+			name = tachographUITests;
+			productName = tachographUITests;
+			productReference = 18D213662A2303AF003EF2C5 /* tachographUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18D213352A2303AC003EF2C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1170;
+				ORGANIZATIONNAME = 1;
+				TargetAttributes = {
+					18D2133C2A2303AC003EF2C5 = {
+						CreatedOnToolsVersion = 11.7;
+					};
+					18D2135A2A2303AF003EF2C5 = {
+						CreatedOnToolsVersion = 11.7;
+						TestTargetID = 18D2133C2A2303AC003EF2C5;
+					};
+					18D213652A2303AF003EF2C5 = {
+						CreatedOnToolsVersion = 11.7;
+						TestTargetID = 18D2133C2A2303AC003EF2C5;
+					};
+				};
+			};
+			buildConfigurationList = 18D213382A2303AC003EF2C5 /* Build configuration list for PBXProject "tachograph" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18D213342A2303AC003EF2C5;
+			productRefGroup = 18D2133E2A2303AC003EF2C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18D2133C2A2303AC003EF2C5 /* tachograph */,
+				18D2135A2A2303AF003EF2C5 /* tachographTests */,
+				18D213652A2303AF003EF2C5 /* tachographUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18D2133B2A2303AC003EF2C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D213532A2303AF003EF2C5 /* LaunchScreen.storyboard in Resources */,
+				18D213502A2303AF003EF2C5 /* Assets.xcassets in Resources */,
+				18D2134E2A2303AC003EF2C5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D213592A2303AF003EF2C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D213642A2303AF003EF2C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18D213392A2303AC003EF2C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D213562A2303AF003EF2C5 /* main.m in Sources */,
+				18D2134B2A2303AC003EF2C5 /* SecondViewController.m in Sources */,
+				18EC48542A279B2A00C36B6E /* TextTabBarController.m in Sources */,
+				18D213422A2303AC003EF2C5 /* AppDelegate.m in Sources */,
+				18D213482A2303AC003EF2C5 /* FirstViewController.m in Sources */,
+				18E20C272A260AF600FDF1A8 /* TextTabBar.m in Sources */,
+				1892782E2ACAEEA00011F9A4 /* Reachability.m in Sources */,
+				18D213452A2303AC003EF2C5 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D213572A2303AF003EF2C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D213602A2303AF003EF2C5 /* tachographTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D213622A2303AF003EF2C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D2136B2A2303AF003EF2C5 /* tachographUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18D2135D2A2303AF003EF2C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18D2133C2A2303AC003EF2C5 /* tachograph */;
+			targetProxy = 18D2135C2A2303AF003EF2C5 /* PBXContainerItemProxy */;
+		};
+		18D213682A2303AF003EF2C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18D2133C2A2303AC003EF2C5 /* tachograph */;
+			targetProxy = 18D213672A2303AF003EF2C5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18D2134C2A2303AC003EF2C5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18D2134D2A2303AC003EF2C5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18D213512A2303AF003EF2C5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18D213522A2303AF003EF2C5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18D2136D2A2303AF003EF2C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18D2136E2A2303AF003EF2C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18D213702A2303AF003EF2C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = tachograph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = myself.tachograph;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		18D213712A2303AF003EF2C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = tachograph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = myself.tachograph;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		18D213732A2303AF003EF2C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = tachographTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = myself.tachographTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tachograph.app/tachograph";
+			};
+			name = Debug;
+		};
+		18D213742A2303AF003EF2C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = tachographTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = myself.tachographTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tachograph.app/tachograph";
+			};
+			name = Release;
+		};
+		18D213762A2303AF003EF2C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = tachographUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = myself.tachographUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = tachograph;
+			};
+			name = Debug;
+		};
+		18D213772A2303AF003EF2C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = tachographUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = myself.tachographUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = tachograph;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18D213382A2303AC003EF2C5 /* Build configuration list for PBXProject "tachograph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D2136D2A2303AF003EF2C5 /* Debug */,
+				18D2136E2A2303AF003EF2C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18D2136F2A2303AF003EF2C5 /* Build configuration list for PBXNativeTarget "tachograph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D213702A2303AF003EF2C5 /* Debug */,
+				18D213712A2303AF003EF2C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18D213722A2303AF003EF2C5 /* Build configuration list for PBXNativeTarget "tachographTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D213732A2303AF003EF2C5 /* Debug */,
+				18D213742A2303AF003EF2C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18D213752A2303AF003EF2C5 /* Build configuration list for PBXNativeTarget "tachographUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D213762A2303AF003EF2C5 /* Debug */,
+				18D213772A2303AF003EF2C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18D213352A2303AC003EF2C5 /* Project object */;
+}
