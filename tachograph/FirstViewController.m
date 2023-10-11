@@ -395,11 +395,11 @@ void array_free(Array *a)
 - (NSString *)inputStreamReceiveHandshakeMessage:(NSStream *)stream
 {
     BOOL msg_begin = false;
-    uint8_t RevBuff[1024] = {69,115,112,51,50,77,115,103,67,108,105,101,110,116,32,105,115,32,67,111,110,110,101,99,116,33,105,100,49};//
-    NSInteger len = 1;//
-    /*uint8_t RevBuff[1024];
+    /*uint8_t RevBuff[1024] = {69,115,112,51,50,77,115,103,67,108,105,101,110,116,32,105,115,32,67,111,110,110,101,99,116,33,105,100,49};//
+    NSInteger len = 1;//*/
+    uint8_t RevBuff[1024];
     NSInteger len = 0;
-    len = [(NSInputStream *)stream read:RevBuff maxLength:1024];//Returns the actual number of bytes read.*/
+    len = [(NSInputStream *)stream read:RevBuff maxLength:1024];//Returns the actual number of bytes read.
     
     if(len)
     {
@@ -588,7 +588,7 @@ void array_free(Array *a)
                                                        CGColorSpaceCreateDeviceRGB(),
                                                        kCGImageAlphaPremultipliedFirst);
     CGImageRef imageRef = CGBitmapContextCreateImage(bitmapContext);
-    UIImage *image = [[UIImage alloc] initWithCGImage:imageRef];
+    UIImage *image = [[UIImage alloc] initWithCGImage:imageRef];//can try [[UIImage alloc] initWithData:data]
     
     CGImageRelease(imageRef);
     CGContextRelease(bitmapContext);
