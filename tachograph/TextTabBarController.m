@@ -21,7 +21,11 @@
     /*添加自定义顶部标签*/
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, HeightOfLabel, WidthOfLabel, HeightOfLabel)];
     label.font = [UIFont systemFontOfSize:SizeOfLabelText];
-    label.backgroundColor = [UIColor BackgroundColor];
+    if (@available(iOS 13.0, *)) {
+        label.backgroundColor = [UIColor BackgroundColor];
+    } else {
+        // Fallback on earlier versions
+    }
     label.text = [[NSString alloc] initWithFormat:@"tachograph"];
     label.textColor = [UIColor whiteColor];
     /*设置顶部标签文本格式*/
@@ -40,8 +44,12 @@
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont  systemFontOfSize:SizeOfTabBarText]}
     forState:UIControlStateNormal];//设置常态tabbaritems的标题文本大小
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor BackgroundColor]}
-    forState:UIControlStateSelected];//设置被选中tabbaritem的标题文本颜色
+    if (@available(iOS 13.0, *)) {
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor BackgroundColor]}
+                                                 forState:UIControlStateSelected];
+    } else {
+        // Fallback on earlier versions
+    }//设置被选中tabbaritem的标题文本颜色
     
 }
 

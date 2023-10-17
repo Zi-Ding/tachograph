@@ -200,7 +200,7 @@ void array_free(Array *a)
      {
        case kCTCellularDataRestricted:
          {
-             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"受限的网络权限"
+             /*UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"受限的网络权限"
                                             message:@"为了您的使用体验，请同意授予WLAN与蜂窝移动网权限"
                                             preferredStyle:UIAlertControllerStyleAlert];
               
@@ -208,7 +208,7 @@ void array_free(Array *a)
                 handler:^(UIAlertAction * action) {}];
               
              [alert addAction:defaultAction];
-             [self presentViewController:alert animated:YES completion:nil];
+             [self presentViewController:alert animated:YES completion:nil];*/
          }
              break;
        case kCTCellularDataNotRestricted:
@@ -216,7 +216,7 @@ void array_free(Array *a)
              break;
        case kCTCellularDataRestrictedStateUnknown:
          {
-             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"未知的网络权限"
+             /*UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"未知的网络权限"
                                             message:@"为了您的使用体验，请同意授予WLAN与蜂窝移动网权限"
                                             preferredStyle:UIAlertControllerStyleAlert];
             
@@ -224,7 +224,7 @@ void array_free(Array *a)
                 handler:^(UIAlertAction * action) {}];
              
              [alert addAction:defaultAction];
-             [self presentViewController:alert animated:YES completion:nil];
+             [self presentViewController:alert animated:YES completion:nil];*/
          }
              break;
        default:
@@ -248,20 +248,50 @@ void array_free(Array *a)
     {
         case NotReachable:
         {
-            NSLog(@"Internet Not Reachable");
+            NSLog(@"NotReachable");
             //connectionRequired = No;
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"NotReachable"
+                                           message:@""
+                                           preferredStyle:UIAlertControllerStyleAlert];
+             
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+               handler:^(UIAlertAction * action) {}];
+             
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
             internetConnectionEnable = NO;
             break;
         }
         case ReachableViaWWAN:
         {
-            NSLog(@"Reachable WWAN");
+            NSLog(@"ReachableViaWWAN");
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"ReachableViaWWAN"
+                                           message:@""
+                                           preferredStyle:UIAlertControllerStyleAlert];
+             
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+               handler:^(UIAlertAction * action) {}];
+             
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
             internetConnectionEnable = YES;
             break;
         }
         case ReachableViaWiFi:
         {
-            NSLog(@"Reachable WiFi");
+            NSLog(@"ReachableViaWiFi");
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"ReachableViaWiFi"
+                                           message:@""
+                                           preferredStyle:UIAlertControllerStyleAlert];
+             
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+               handler:^(UIAlertAction * action) {}];
+             
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
             internetConnectionEnable = YES;
             break;
         }
@@ -278,7 +308,7 @@ void array_free(Array *a)
     
     BOOL internetEnable = [self reachabilityForNetworkConnection];
     if (internetEnable)
-    {
+    {   
         self.localAddress = [self getLocalIPAddress];
         [self searchForCamera:self.localAddress];
     }
