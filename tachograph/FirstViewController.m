@@ -7,67 +7,42 @@
 //
 
 #import "FirstViewController.h"
-
-
+#import "Reachability.h"
+#import "PingManager.h"
 
 
 @interface FirstViewController ()
 
-
 #ifndef ARRAY
 #define ARRAY
-
 typedef struct
 {
     uint8_t* array;    //数组头指针
     NSInteger size;      //数组大小
 }Array;
-
 #endif
-
 
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (strong, nonatomic) NSString *localAddress;
+@property (strong, nonatomic) NSString *remoteAddress;
+@property (strong, nonatomic) PingManager *pingManager;
 @property (strong, nonatomic)  IBOutlet UIImageView *imageView;
 @property (strong, nonatomic)  IBOutlet UIImage *image;
-
 
 @end
 
 
 
-
-
-
 @implementation FirstViewController
 
-@synthesize localAddress;
-@synthesize imageView;
-@synthesize image;
-
-
     Array imageBuff;
-    BOOL image_cam_flag = false;// 0:数据流不是图像数据   1:数据流是图像数据
-
-void array_create(Array *a, NSInteger init_size)
-{
-    a->size = init_size;
-    a->array = (uint8_t *)malloc(sizeof(uint8_t) * a->size);
-}
-
-void array_set(Array *a, NSInteger index, NSInteger value)
-{
-    a->array[index] = value;
-}
-
-void array_free(Array *a)
-{
-    free(a->array);
-    a->array = NULL;
-    a->size = 0;
-}
-
+    BOOL image_cam_flag = NO;// 0:数据流不是图像数据   1:数据流是图像数据
+    BOOL internetEnable = NO;
+    BOOL isQianduan = NO;
+    BOOL isHouduan = NO;
+    
+    
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -79,10 +54,8 @@ void array_free(Array *a)
     originFrame.size.width  = WidthOfSearchButton;  //设置按钮宽度
     originFrame.origin.x    = 0;                    //设置按钮位置x
     originFrame.origin.y    = HeightOfLabel + HeightOfTabBar + IntervalBetweenTabbarAndSearchButton + HeightOfSearchButton;//设置按钮位置y
-    self.searchButton.frame = originFrame;
+    self.searchButton.frame = originFrame;//按钮圆角在inspector设置
     self.searchButton.titleLabel.font = [UIFont systemFontOfSize:SizeOfSearchButtonTitle];//设置按钮title字体大小
-    //按钮圆角在inspector设置
-    
     /*设置表格标签文本格式*/
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.alignment = NSTextAlignmentLeft;//对齐
@@ -119,7 +92,6 @@ void array_free(Array *a)
     NSAttributedString *attrText3 = [[NSAttributedString alloc] initWithString:textstring3 attributes:@{NSParagraphStyleAttributeName:paraStyle}];
     label3.attributedText = attrText3;
     [self.view addSubview:label3];
-    
 }
 
 
@@ -132,12 +104,10 @@ void array_free(Array *a)
     //return documentDirectory;
 }
 
-
 - (NSString *)tmpFilePath
 {
     return NSTemporaryDirectory();
 }
-
 
 - (NSString *)getTime
 {
@@ -168,16 +138,18 @@ void array_free(Array *a)
             // Check for IPV4 interface
             if(temp_addr->ifa_addr->sa_family == AF_INET)
             {
-                //NSLog(@"Found a new interface in domain TCP/IP – IPv4: %@\n",[NSString stringWithUTF8String:temp_addr->ifa_name]);
+                //NSLog(@"Found a new interface in domain TCP/IP – IPv4: %@",[NSString stringWithUTF8String:temp_addr->ifa_name]);
                 
-                // Check interface name ,lo0为环回接口(LocalHost常为本地测试用)，en开头为网卡接口
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] hasPrefix:@"en"])
+                //en开头为网卡接口, pdp_ip开头为蜂窝数据, lo0为环回接口(LocalHost常为本地测试用)， bridge100为桥接或热点HostIp
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] hasPrefix:@"bridge"])
                 {
-                    //NSLog(@"ifa_name with <en> prefix = %@",[NSString stringWithUTF8String:temp_addr->ifa_name]);
+                    NSLog(@"ifa_name with <> prefix = %@",[NSString stringWithUTF8String:temp_addr->ifa_name]);
                     
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];// Get NSString from C String
-                    //NSLog(@"%@ address = %@",[NSString stringWithUTF8String:temp_addr->ifa_name],address);
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];//Get NSString from C String
+                    NSLog(@"%@ address = %@",[NSString stringWithUTF8String:temp_addr->ifa_name],address);
+                    break;
                 }
+                
             }
             
             temp_addr = temp_addr->ifa_next;//遍历所有网卡
@@ -190,215 +162,160 @@ void array_free(Array *a)
 }
 
 
-- (void)checkNeedPermissions
-{
-    /*查询是否有网络权限*/
-    /*ios系统没有提供接口供APP开发者手动请求网络权限，应用首次请求网络时，系统会自动弹出权限选择框。一个应用只会弹出一次提示，提示过后就算卸载重装也不再提示*/
-    CTCellularData *cellularData = [[CTCellularData alloc]init];
-    CTCellularDataRestrictedState state = cellularData.restrictedState;
-     switch (state)
-     {
-       case kCTCellularDataRestricted:
-         {
-             /*UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"受限的网络权限"
-                                            message:@"为了您的使用体验，请同意授予WLAN与蜂窝移动网权限"
-                                            preferredStyle:UIAlertControllerStyleAlert];
-              
-             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                handler:^(UIAlertAction * action) {}];
-              
-             [alert addAction:defaultAction];
-             [self presentViewController:alert animated:YES completion:nil];*/
-         }
-             break;
-       case kCTCellularDataNotRestricted:
-             //NSLog(@"Not Restricted");
-             break;
-       case kCTCellularDataRestrictedStateUnknown:
-         {
-             /*UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"未知的网络权限"
-                                            message:@"为了您的使用体验，请同意授予WLAN与蜂窝移动网权限"
-                                            preferredStyle:UIAlertControllerStyleAlert];
-            
-             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                handler:^(UIAlertAction * action) {}];
-             
-             [alert addAction:defaultAction];
-             [self presentViewController:alert animated:YES completion:nil];*/
-         }
-             break;
-       default:
-             break;
-    }
-    
-    /*存储权限实机测试时调整，查看是否与网络权限申请一样是系统自动申请*/
-    
-}
-
-
-- (BOOL)reachabilityForNetworkConnection
-{
-    /*当应用程序发送到网络堆栈的数据包可以离开本地设备时，就可以认为远程主机是可访问的，但不能保证主机是否实际接收到数据包*/
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];//can try reachabilityWithAddress
-    BOOL internetConnectionEnable = NO;
-    //BOOL connectionRequired = [reachability connectionRequired];//ios模拟器没有移动网络所以一直为no
-    //NSLog(@"connectionRequired = %i",connectionRequired);
-    NetworkStatus netStatus = [reachability currentReachabilityStatus];
-    switch (netStatus)
-    {
-        case NotReachable:
-        {
-            NSLog(@"NotReachable");
-            //connectionRequired = No;
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"NotReachable"
-                                           message:@""
-                                           preferredStyle:UIAlertControllerStyleAlert];
-             
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-               handler:^(UIAlertAction * action) {}];
-             
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            internetConnectionEnable = NO;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            NSLog(@"ReachableViaWWAN");
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"ReachableViaWWAN"
-                                           message:@""
-                                           preferredStyle:UIAlertControllerStyleAlert];
-             
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-               handler:^(UIAlertAction * action) {}];
-             
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            internetConnectionEnable = YES;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            NSLog(@"ReachableViaWiFi");
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"ReachableViaWiFi"
-                                           message:@""
-                                           preferredStyle:UIAlertControllerStyleAlert];
-             
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-               handler:^(UIAlertAction * action) {}];
-             
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            internetConnectionEnable = YES;
-            break;
-        }
-    }
-    
-    return internetConnectionEnable;
-    
-}
-
-
 - (IBAction)searchButtonPressed:(id)sender
 {
-    [self checkNeedPermissions];
+    //[self checkNeedPermissions];//检测网络权限，实测后发现一直是kCTCellularDataRestrictedStateUnknown
     
-    BOOL internetEnable = [self reachabilityForNetworkConnection];
+    internetEnable = [self reachabilityForNetworkConnection];//利用Reachability判断当前设备是否联网
     if (internetEnable)
-    {   
+    {
         self.localAddress = [self getLocalIPAddress];
-        [self searchForCamera:self.localAddress];
+        NSLog(@"localAddress = %@",self.localAddress);
+        if (self.localAddress)
+        {
+            [self searchHotIP:self.localAddress];//利用SimplePing来检查服务器是否连通
+        }
     }
 }
 
 
-- (void)searchForCamera:(NSString *)urlStr
+- (void)searchHotIP:(NSString *)IPString
 {
-        NSInputStream *inputStream = [self createInputStreamBasedOnIPAddress:urlStr];
+    /*由于联网状态下ICMP数据总能发送成功，所以判断服务器ip的时候不能用Reachability，要用SimplePing*/
     
-        //[self stream:inputStream handleEvent:NSStreamEventOpenCompleted];//运行Stream打开完成事件
-        
-        //[self stream:inputStream handleEvent:NSStreamEventHasBytesAvailable];//运行stream读入事件
-        NSString *flagOfFrontendOrBackend  = [self inputStreamReceiveHandshakeMessage:inputStream];//inputstream读入camera消息
-        
-        [self stream:inputStream handleEvent:NSStreamEventEndEncountered];//运行stream结束事件
-        
-        if ([flagOfFrontendOrBackend isEqualToString:qianduan] || [flagOfFrontendOrBackend isEqualToString:houduan])
+    NSRange range = [IPString rangeOfString:@"." options:NSBackwardsSearch];
+    NSString *headString = [IPString substringToIndex:1 + range.location];
+    NSLog(@"headString = %@",headString);
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    for (int i = 1; i<=255; i++)
+    {
+        NSString *intString = [NSString stringWithFormat:@"%d",i];
+        NSString *tempAddressString = [headString stringByAppendingString:intString];
+        if ([tempAddressString isEqualToString:self.localAddress]||[tempAddressString isEqualToString:@"172.20.10.15"])//热点自己的地址是172.20.10.1, 广播地址是 172.20.10.15
         {
-            [self showSearchResultInLocation:flagOfFrontendOrBackend withIP:urlStr];//开启直播
+            continue;
         }
+        [mutableArray addObject:tempAddressString];
+    }
+    NSArray *addressArray = [NSArray arrayWithArray:mutableArray];
+    
+    self.pingManager = [[PingManager alloc] init];
+    [self.pingManager getReachableAddressArray:addressArray resultArray:(CompletionHandler)^(NSArray *resultAddress)
+    {
+        NSLog(@"resultAddress:\n%@",resultAddress);
+        if (resultAddress)
+        {
+            [self searchForCamera:resultAddress];
+        }
+    }];
 }
 
 
-- (NSInputStream *)createInputStreamBasedOnIPAddress:(NSString *)urlStr
+- (void)searchForCamera:(NSArray *)addressList
 {   
-    NSInputStream *inputStream = [[NSInputStream alloc] init];//
-    if (![urlStr isEqualToString:@""])
+    for (NSString *address in addressList)
     {
-        NSURL *website = [NSURL URLWithString:urlStr];
-        if (!website)
-        {
-            NSLog(@"%@ is not a valid URL",website);
-            //return;//
-            return inputStream;
-        }
-        NSLog(@"website = %@",website);
-        
+        [self createTestSocketByAddress:address];
+    }
+}
+
+
+- (void)createTestSocketByAddress:(NSString *)address
+{
+    NSLog(@"addressStr = %@",address);
+    
+    if (address)
+    {
         CFReadStreamRef readStream;
         CFWriteStreamRef writeStream;
         
         /*通过CFStream创建的socket连接*/
-        CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)[website host], PortOfSocket, &readStream, &writeStream);
+        CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)(address), PortOfSocket, &readStream, &writeStream);
         
-        inputStream = (__bridge_transfer NSInputStream *)readStream;//
+        NSInputStream *inputStream = (__bridge_transfer NSInputStream *)readStream;//CFStream转换至NSStream
+        NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *)writeStream;//CFStream转换至NSStream
         
-        //NSInputStream *inputStream = (__bridge_transfer NSInputStream *)readStream;//CFStream转换至NSStream
-        //NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *)writeStream;//CFStream转换至NSStream
+        [inputStream setDelegate:self];
+        [outputStream setDelegate:self];
         
-        //[inputStream setDelegate:self];
-        //[outputStream setDelegate:self];
-        
-        //[inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];//按照默认顺序运行inputStreamEvent
-        //[outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];//按照默认顺序运行outputStreamEvent
+        [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];//按照默认顺序运行inputStreamEvent
+        [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];//按照默认顺序运行outputStreamEvent
         
         [inputStream open];
-        //[outputStream open];
-        
-        return inputStream;
+        [outputStream open];
     }
     else
     {
-        return inputStream;
+        NSLog(@"addressStr is null");
     }
 }
 
 
-/*该方法本是NSStreamDelegate协议方法，是对事件的响应方法*/
-- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode
+- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode //该方法是NSStreamDelegate协议方法，对事件的响应方法
 {
-    switch(eventCode)
+    switch(eventCode )
     {
         case NSStreamEventOpenCompleted:  //打开完成事件
         {
             NSLog(@"NSStreamEventOpenCompleted");
             break;
         }
-        case NSStreamEventHasBytesAvailable:  //InputStream,可读的事件响应处理
+        case NSStreamEventHasBytesAvailable:  //可读的事件响应处理
         {
             NSLog(@"NSStreamEventHasBytesAvailable");
+            
+            //uint8_t RevBuff[1024] = {69,115,112,51,50,77,115,103,67,108,105,101,110,116,32,105,115,32,67,111,110,110,101,99,116,33,105,100,49};
+            //NSMutableData *data;
+            BOOL msg_begin = NO;
+            uint8_t RevBuff[1024];
+            NSInteger len = 0;
+            
+            len = [(NSInputStream *)stream read:RevBuff maxLength:1024];//Returns the actual number of bytes read.
+            if(len)
+            {
+                //[data appendBytes:(const void *)RevBuff length:len];
+                NSString *RevBuffString = [NSString stringWithFormat:@"%s",RevBuff];
+                NSLog(@"RevBuffString = %@",RevBuffString);
+                
+                msg_begin = RevBuff[0] == 69 && RevBuff[1] == 115 && RevBuff[2] == 112 && RevBuff[3] == 51 && RevBuff[4] == 50
+                && RevBuff[5] == 77 && RevBuff[6] == 115 && RevBuff[7] == 103 ;//判断包头
+                if (msg_begin)
+                {
+                    /*处理接收到的握手信息帧*/
+                    NSRange range1 = [RevBuffString rangeOfString:@"Esp32MsgClient is Connect!"];
+                    if (range1.location != NSNotFound)
+                    {
+                        NSRange range2 = [RevBuffString rangeOfString:@"id1"];
+                        NSRange range3 = [RevBuffString rangeOfString:@"id2"];
+                        if (range2.location != NSNotFound)//前端
+                        {
+                            NSLog(@"qianduan");
+                            //[self showSearchResult:@"前端" withIP:address];//开启直播
+                        }
+                        else if (range3.location != NSNotFound)//后端
+                        {
+                            NSLog(@"houduan");
+                        }
+                    }
+                    
+                    NSString *FrontendOrBackend  = @"";
+                    if ([FrontendOrBackend isEqualToString:@"qianduan"] || [FrontendOrBackend isEqualToString:@"houduan"])
+                    {
+                        //[self showSearchResult:FrontendOrBackend withIP:address];//开启直播
+                    }
+                }
+                
+            }
+            else
+            {
+                NSLog(@"RevBuff len = null !");
+            }
             break;
         }
-        case NSStreamEventHasSpaceAvailable: //OutputStream,可写的事件响应处理
+        case NSStreamEventHasSpaceAvailable:   //可写的事件响应处理
         {
             NSLog(@"NSStreamEventHasSpaceAvailable");
-            break;
-        }
-        case NSStreamEventNone:
-        {
-            NSLog(@"NSStreamEventNone");
             break;
         }
         case NSStreamEventEndEncountered:  //结束事件
@@ -406,8 +323,12 @@ void array_free(Array *a)
             NSLog(@"NSStreamEventEndEncountered");
             [stream close];
             [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            //[stream release];//not available in autoreleasepool
             stream = nil; // stream is ivar, so reinit it
+            break;
+        }
+        case NSStreamEventNone:
+        {
+            NSLog(@"NSStreamEventNone");
             break;
         }
         case NSStreamEventErrorOccurred:  //错误发生事件
@@ -422,61 +343,7 @@ void array_free(Array *a)
 }
 
 
-- (NSString *)inputStreamReceiveHandshakeMessage:(NSStream *)stream
-{
-    BOOL msg_begin = false;
-    /*uint8_t RevBuff[1024] = {69,115,112,51,50,77,115,103,67,108,105,101,110,116,32,105,115,32,67,111,110,110,101,99,116,33,105,100,49};//
-    NSInteger len = 1;//*/
-    uint8_t RevBuff[1024];
-    NSInteger len = 0;
-    len = [(NSInputStream *)stream read:RevBuff maxLength:1024];//Returns the actual number of bytes read.
-    
-    if(len)
-    {
-        msg_begin = RevBuff[0] == 69 && RevBuff[1] == 115 && RevBuff[2] == 112 && RevBuff[3] == 51 && RevBuff[4] == 50
-        && RevBuff[5] == 77 && RevBuff[6] == 115 && RevBuff[7] == 103 ;//判断包头
-        if (msg_begin)
-        {
-            /*处理接收到的握手信息帧*/
-            NSString *RevBuffString = [NSString stringWithFormat:@"%s",RevBuff];
-            NSLog(@"RevBuffString = %@",RevBuffString);
-            NSRange range1 = [RevBuffString rangeOfString:@"Esp32MsgClient is Connect!"];
-            if (range1.location != NSNotFound)
-            {
-                NSRange range2 = [RevBuffString rangeOfString:@"id1"];
-                NSRange range3 = [RevBuffString rangeOfString:@"id2"];
-                if (range2.location != NSNotFound)//前端
-                {
-                    return qianduan;
-                }
-                else if (range3.location != NSNotFound)//后端
-                {
-                    return houduan;
-                }
-                else
-                {
-                    return @"";
-                }
-            }
-            else
-            {
-                return @"";
-            }
-        }
-        else
-        {
-            return @"";
-        }
-    }
-    else
-    {
-        NSLog(@"no buffer!");
-        return @"";
-    }
-}
-
-
-- (void)showSearchResultInLocation:(NSString *)FrontendOrBackend withIP:(NSString *)ipString
+- (void)showSearchResult:(NSString *)FrontendOrBackend withIP:(NSString *)ipString
 {
     /*设置表格文本格式*/
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
@@ -530,7 +397,7 @@ void array_free(Array *a)
         //NSTimeInterval timeIntervalSinceClickConnectButton = [nowDate timeIntervalSinceDate:clickTime];
         //NSLog(@"timeIntervalSinceClickConnectButton = %f",timeIntervalSinceClickConnectButton);
         
-        NSInputStream *inputStream = [self createInputStreamBasedOnIPAddress:self.localAddress];
+        //[self createSocketByAddress:self.];
         
         //[self stream:inputStream handleEvent:NSStreamEventOpenCompleted];//运行Stream打开完成事件
         
@@ -542,11 +409,11 @@ void array_free(Array *a)
         NSString *mp4FilePath =[documentFilePath stringByAppendingPathComponent:mp4FileName];
         NSLog(@"mp4FilePath = %@",mp4FilePath);
         
-        [self inputStreamReceiveImageMessage:inputStream];//inputstream读入camera消息
+        //[self inputStreamReceiveImageMessage:inputStream];//inputstream读入camera消息
         
         
         
-        [self stream:inputStream handleEvent:NSStreamEventEndEncountered];//运行Stream结束事件
+        //[self stream:inputStream handleEvent:NSStreamEventEndEncountered];//运行Stream结束事件
         
     }
     
@@ -569,24 +436,26 @@ void array_free(Array *a)
                 && RevBuff[5] == 79 && RevBuff[6] == 118 && RevBuff[7] == 101 && RevBuff[8] == 114 && RevBuff[9] == 114;
         if (!image_cam_flag && begin_cam_flag)//判断接收的包是不是图片的开头数据,是的话说明下面的数据属于图片数据,将image_cam_flag置1
         {
-            image_cam_flag = true;
+            image_cam_flag = YES;
         }
         else if (image_cam_flag)//如果 image_cam_flag == 1,说明包是图像数据,将数据发给byteMerger方法,合并一帧图像
         {
             array_create(&imageBuff, 0);//创建数组
             NSInteger recvBuffSize = len;//注意long和int
-            [self byteMergerBetweenWholeBuffArray:&imageBuff andReciveBuffPointer:RevBuff withRecvBuffSize:recvBuffSize];
+            [self byteMergerBetweenWholeBuff:&imageBuff andReciveBuff:RevBuff RecvBuffSize:recvBuffSize];
         }
         else if (end_cam_flag)//判断包是不是图像的结束包,是的话将image_cam_flag置0，并显示图像
         {
-            image_cam_flag = false;
+            image_cam_flag = NO;
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                //异步并发线程
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),//异步并发线程
+            ^{
+                
                 self.image = [self creatUIImageByData:imageBuff.array];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //回到主线程追加任务
+                dispatch_async(dispatch_get_main_queue(),//回到主线程追加任务
+                ^{
+                    
                     [self.imageView setImage:self.image];
 
                     array_free(&imageBuff);
@@ -627,7 +496,27 @@ void array_free(Array *a)
 }
 
 
-- (void)byteMergerBetweenWholeBuffArray:(Array *)wholeBuff  andReciveBuffPointer:(uint8_t *)recvBuff withRecvBuffSize:(NSInteger)recvBuffSize
+#pragma mark - C ArrayList
+
+void array_create(Array *a, NSInteger init_size)
+{
+    a->size = init_size;
+    a->array = (uint8_t *)malloc(sizeof(uint8_t) * a->size);
+}
+
+void array_set(Array *a, NSInteger index, NSInteger value)
+{
+    a->array[index] = value;
+}
+
+void array_free(Array *a)
+{
+    free(a->array);
+    a->array = NULL;
+    a->size = 0;
+}
+
+- (void)byteMergerBetweenWholeBuff:(Array *)wholeBuff  andReciveBuff:(uint8_t *)recvBuff RecvBuffSize:(NSInteger)recvBuffSize
 {
     //分配内存空间大小为wholeBuffSize+recvBuffSize
     uint8_t *tempBuff = (uint8_t *)malloc((wholeBuff->size + recvBuffSize) * sizeof(uint8_t));
@@ -653,5 +542,95 @@ void array_free(Array *a)
     
 }
 
+
+#pragma mark - Network Reachability
+
+- (void)checkNeedPermissions
+{
+    /*查询是否有网络权限*/
+    /*ios系统没有提供接口供APP开发者手动请求网络权限，应用首次请求网络时，系统会自动弹出权限选择框。一个应用只会弹出一次提示，提示过后就算卸载重装也不再提示*/
+    CTCellularData *cellularData = [[CTCellularData alloc]init];
+    CTCellularDataRestrictedState state = cellularData.restrictedState;
+     switch (state)
+     {
+       case kCTCellularDataRestricted:
+         {
+             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"受限的网络权限"
+                                            message:@"为了您的使用体验，请同意授予WLAN与蜂窝移动网权限"
+                                            preferredStyle:UIAlertControllerStyleAlert];
+              
+             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                handler:^(UIAlertAction * action) {}];
+              
+             [alert addAction:defaultAction];
+             [self presentViewController:alert animated:YES completion:nil];
+         }
+             break;
+       case kCTCellularDataNotRestricted:
+             //NSLog(@"Not Restricted");
+             break;
+       case kCTCellularDataRestrictedStateUnknown:
+         {
+             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"未知的网络权限"
+                                            message:@"为了您的使用体验，请同意授予WLAN与蜂窝移动网权限"
+                                            preferredStyle:UIAlertControllerStyleAlert];
+            
+             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                handler:^(UIAlertAction * action) {}];
+             
+             [alert addAction:defaultAction];
+             [self presentViewController:alert animated:YES completion:nil];
+         }
+             break;
+       default:
+             break;
+    }
+    
+    /*存储权限实机测试时调整，查看是否与网络权限申请一样是系统自动申请*/
+    
+}
+
+- (BOOL)reachabilityForNetworkConnection
+{
+    /*当应用程序发送到网络堆栈的数据包可以离开本地设备时，就可以认为远程主机是可访问的，但不能保证主机是否实际接收到数据包*/
+    Reachability *internetReachability = [Reachability reachabilityForInternetConnection];
+    BOOL internetConnectionEnable = NO;
+    NetworkStatus netStatus = [internetReachability currentReachabilityStatus];
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            NSLog(@"NotReachable");
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"无网络"
+                                            message:@"NotReachable"
+                                            preferredStyle:UIAlertControllerStyleAlert];
+            
+             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                handler:^(UIAlertAction * action) {}];
+             
+             [alert addAction:defaultAction];
+             [self presentViewController:alert animated:YES completion:nil];
+            
+            internetConnectionEnable = NO;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"ReachableViaWWAN");
+            internetConnectionEnable = YES;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"ReachableViaWiFi");
+            internetConnectionEnable = YES;
+            break;
+        }
+    }
+    
+    return internetConnectionEnable;
+    
+}
 
 @end

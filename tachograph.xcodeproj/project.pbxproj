@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1892782E2ACAEEA00011F9A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892782C2ACAEEA00011F9A4 /* Reachability.m */; };
+		18BCDE642B1757A000CB4791 /* SinglePinger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCDE622B1757A000CB4791 /* SinglePinger.m */; };
+		18BCDE652B1757A100CB4791 /* PingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCDE612B1757A000CB4791 /* PingManager.m */; };
+		18BCDE662B1757A100CB4791 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCDE632B1757A000CB4791 /* Reachability.m */; };
+		18BCDE672B1757A100CB4791 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCDE5C2B1757A000CB4791 /* SimplePing.m */; };
 		18D213422A2303AC003EF2C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213412A2303AC003EF2C5 /* AppDelegate.m */; };
 		18D213452A2303AC003EF2C5 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213442A2303AC003EF2C5 /* SceneDelegate.m */; };
 		18D213482A2303AC003EF2C5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D213472A2303AC003EF2C5 /* FirstViewController.m */; };
@@ -22,6 +25,7 @@
 		18DE3E732A7568E40014D026 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DE3E722A7568E30014D026 /* CoreFoundation.framework */; };
 		18E20C272A260AF600FDF1A8 /* TextTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E20C262A260AF600FDF1A8 /* TextTabBar.m */; };
 		18EC48542A279B2A00C36B6E /* TextTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC48532A279B2A00C36B6E /* TextTabBarController.m */; };
+		18FD1AAF2B27216000A516DB /* TestSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD1AAE2B27216000A516DB /* TestSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +46,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1892782C2ACAEEA00011F9A4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		1892782D2ACAEEA00011F9A4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		18BCDE5C2B1757A000CB4791 /* SimplePing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SimplePing.m; path = Network/SimplePing.m; sourceTree = "<group>"; };
+		18BCDE5D2B1757A000CB4791 /* SinglePinger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SinglePinger.h; path = Network/SinglePinger.h; sourceTree = "<group>"; };
+		18BCDE5E2B1757A000CB4791 /* SimplePing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimplePing.h; path = Network/SimplePing.h; sourceTree = "<group>"; };
+		18BCDE5F2B1757A000CB4791 /* PingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PingManager.h; path = Network/PingManager.h; sourceTree = "<group>"; };
+		18BCDE602B1757A000CB4791 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Network/Reachability.h; sourceTree = "<group>"; };
+		18BCDE612B1757A000CB4791 /* PingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PingManager.m; path = Network/PingManager.m; sourceTree = "<group>"; };
+		18BCDE622B1757A000CB4791 /* SinglePinger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SinglePinger.m; path = Network/SinglePinger.m; sourceTree = "<group>"; };
+		18BCDE632B1757A000CB4791 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Network/Reachability.m; sourceTree = "<group>"; };
 		18D2133D2A2303AC003EF2C5 /* tachograph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tachograph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D213402A2303AC003EF2C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D213412A2303AC003EF2C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -70,6 +80,8 @@
 		18E20C262A260AF600FDF1A8 /* TextTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextTabBar.m; sourceTree = "<group>"; };
 		18EC48522A279B2A00C36B6E /* TextTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextTabBarController.h; sourceTree = "<group>"; };
 		18EC48532A279B2A00C36B6E /* TextTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextTabBarController.m; sourceTree = "<group>"; };
+		18FD1AAD2B27216000A516DB /* TestSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSocket.h; sourceTree = "<group>"; };
+		18FD1AAE2B27216000A516DB /* TestSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,12 +139,20 @@
 				18D213412A2303AC003EF2C5 /* AppDelegate.m */,
 				18D213432A2303AC003EF2C5 /* SceneDelegate.h */,
 				18D213442A2303AC003EF2C5 /* SceneDelegate.m */,
-				1892782D2ACAEEA00011F9A4 /* Reachability.h */,
-				1892782C2ACAEEA00011F9A4 /* Reachability.m */,
+				18BCDE5F2B1757A000CB4791 /* PingManager.h */,
+				18BCDE612B1757A000CB4791 /* PingManager.m */,
+				18BCDE602B1757A000CB4791 /* Reachability.h */,
+				18BCDE632B1757A000CB4791 /* Reachability.m */,
+				18BCDE5E2B1757A000CB4791 /* SimplePing.h */,
+				18BCDE5C2B1757A000CB4791 /* SimplePing.m */,
+				18BCDE5D2B1757A000CB4791 /* SinglePinger.h */,
+				18BCDE622B1757A000CB4791 /* SinglePinger.m */,
 				18EC48522A279B2A00C36B6E /* TextTabBarController.h */,
 				18EC48532A279B2A00C36B6E /* TextTabBarController.m */,
 				18E20C252A260AF600FDF1A8 /* TextTabBar.h */,
 				18E20C262A260AF600FDF1A8 /* TextTabBar.m */,
+				18FD1AAD2B27216000A516DB /* TestSocket.h */,
+				18FD1AAE2B27216000A516DB /* TestSocket.m */,
 				18D213462A2303AC003EF2C5 /* FirstViewController.h */,
 				18D213472A2303AC003EF2C5 /* FirstViewController.m */,
 				18D213492A2303AC003EF2C5 /* SecondViewController.h */,
@@ -303,13 +323,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BCDE642B1757A000CB4791 /* SinglePinger.m in Sources */,
 				18D213562A2303AF003EF2C5 /* main.m in Sources */,
 				18D2134B2A2303AC003EF2C5 /* SecondViewController.m in Sources */,
+				18BCDE672B1757A100CB4791 /* SimplePing.m in Sources */,
+				18BCDE662B1757A100CB4791 /* Reachability.m in Sources */,
 				18EC48542A279B2A00C36B6E /* TextTabBarController.m in Sources */,
 				18D213422A2303AC003EF2C5 /* AppDelegate.m in Sources */,
+				18BCDE652B1757A100CB4791 /* PingManager.m in Sources */,
+				18FD1AAF2B27216000A516DB /* TestSocket.m in Sources */,
 				18D213482A2303AC003EF2C5 /* FirstViewController.m in Sources */,
 				18E20C272A260AF600FDF1A8 /* TextTabBar.m in Sources */,
-				1892782E2ACAEEA00011F9A4 /* Reachability.m in Sources */,
 				18D213452A2303AC003EF2C5 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

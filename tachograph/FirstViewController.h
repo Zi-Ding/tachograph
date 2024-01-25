@@ -10,7 +10,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import "TextTabBar.h"
 #import "TextTabBarController.h"
-#import "Reachability.h"
+
 
 
 #define IntervalBetweenTabbarAndSearchButton        SCREEN_HEIGHT/45
@@ -39,9 +39,7 @@
 #define SizeOfConnectButtonTitle                    HeightOfSearchButton/2.8
 
 
-@interface FirstViewController : UIViewController
-
-
+@interface FirstViewController : UIViewController <NSStreamDelegate> 
 
 @end
 

@@ -2,6 +2,30 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:tachograph.xcodeproj">
+      location = "group:../tachograph/Network/PingManager.h">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/PingManager.m">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/Reachability.h">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/Reachability.m">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/SimplePing.h">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/SimplePing.m">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/SinglePinger.h">
+   </FileRef>
+   <FileRef
+      location = "group:../tachograph/Network/SinglePinger.m">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
